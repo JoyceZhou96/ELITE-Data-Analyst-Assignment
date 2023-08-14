@@ -77,3 +77,17 @@ from tmp2 a
 left join tmp3 b 
 on a.initial_visit_date = b.initial_visit_date
 ```
+
+## Task 3
+<img width="502" alt="image" src="https://github.com/JoyceZhou96/ELITE-Data-Analyst-Assignment/assets/51615886/47b454b6-6045-4e4b-bd47-70136e6c7db5">
+
+Explanation: Since the dashboard cannot be saved to obtain a link, please take a screenshot of the dashboard for reference.
+
+### Chart 1: Daily Login Users
+This chart illustrates the overall number of active users on a daily basis, and it reveals a downward trend.
+
+### Chart 2: Daily N+1 Retention Rate
+This chart represents the retention rate of users from their initial visit to the subsequent day. It is apparent that the retention rate is also declining.
+
+### Chart 3: Daily Retention Rate on Day X
+This chart depicts the retention rate of users who return on a specific day. As time progresses, it becomes less probable for them to come back.
