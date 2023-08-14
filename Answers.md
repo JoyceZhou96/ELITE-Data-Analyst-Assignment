@@ -41,6 +41,39 @@ ORDER BY 1,2
 ### Output
 ![image](https://github.com/JoyceZhou96/ELITE-Data-Analyst-Assignment/assets/51615886/005c403d-d85f-44a0-8dd7-f9eebf47bb61)
 
-
-
-
+## Task 2
+Combine 2 sub tasks into one [query](https://console.cloud.google.com/bigquery?sq=208774998227:f659176e31cb421b8ff87773c0fe1ea0)
+### Query
+```sql
+with login_base as (
+  select user_pseudo_id as user_id,
+  event_date as login_date
+  from `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
+),
+tmp as (
+  select a.login_date as initial_visit_date,
+  a.user_id as user_id,
+  date_diff(PARSE_DATE('%Y%m%d', b.login_date), PARSE_DATE('%Y%m%d', a.login_date), DAY) as days,
+  b.user_id as retain_user
+  from login_base a 
+  left join login_base b 
+  on a.user_id = b.user_id and a.login_date < b.login_date
+  group by 1,2,3,4
+),
+tmp2 as (
+  select initial_visit_date, 
+    count(distinct user_id) as users
+  from tmp
+  group by 1
+),
+tmp3 as (
+  select initial_visit_date, 
+    days,
+  count(distinct retain_user) as retained
+from tmp
+group by 1,2)
+select a.initial_visit_date, a.users, b.days, b.retained, b.retained*1.0000/a.users as retention_rate
+from tmp2 a 
+left join tmp3 b 
+on a.initial_visit_date = b.initial_visit_date
+```
