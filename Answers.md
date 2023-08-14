@@ -39,6 +39,7 @@ ORDER BY 1,2
 ;
 ```
 ### Output
+![image](https://github.com/JoyceZhou96/ELITE-Data-Analyst-Assignment/assets/51615886/005c403d-d85f-44a0-8dd7-f9eebf47bb61)
 
 
 
